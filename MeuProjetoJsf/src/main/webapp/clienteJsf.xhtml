@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<meta charset="UTF-8" />
+<h:head>
+	<title>Not present in rendered output</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panelGrid layout="grid" columns="4" styleClass="ui-fluid">
+			<f:facet name="header">Cadastrar Cliente</f:facet>
+			<p:outputLabel value="Nome" />
+			<p:inputText value="#{clienteController.cliente.nome}" />
+			<p:outputLabel value="E-mail" />
+			<p:inputText value="#{clienteController.cliente.email}" />
+		</p:panelGrid>
+
+		<p:commandButton value="Adicionar"
+			action="#{clienteController.adicionar}" update="@form"
+			style="margin: 15px 0" />
+
+		<p:growl id="msg" showDetail="true" rendered="true" ></p:growl>
+		<p:dataTable value="#{clienteController.todosClientes}" var="cliente">
+			<p:column headerText="Nome">
+				<h:outputText value="#{cliente.nome}" />
+			</p:column>
+			<p:column headerText="E-mail">
+				<h:outputText value="#{cliente.email}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+
+</h:body>
+</html>
